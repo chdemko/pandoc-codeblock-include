@@ -19,12 +19,12 @@ def include(elem, doc):
                     found = True
                 except IOError:
                     debug('[WARNING] pandoc-codeblock-include: ' + value + ' not found')
-            elif name == 'start-from' or name == 'startFrom':
+            elif name == 'startFrom':
                 try:
                     start_from = int(value) - 1
                 except ValueError:
                     debug('[WARNING] pandoc-codeblock-include: ' + value + ' is not a correct integer')
-            elif name == 'end-at' or name == 'endAt':
+            elif name == 'endAt':
                 try:
                     end_at = int(value)
                 except ValueError:
