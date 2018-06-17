@@ -5,7 +5,6 @@
 [![PyPI version](https://img.shields.io/pypi/v/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
 [![PyPI format](https://img.shields.io/pypi/format/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
 [![License](https://img.shields.io/pypi/l/pandoc-codeblock-include.svg)](https://raw.githubusercontent.com/chdemko/pandoc-codeblock-include/master/LICENSE)
-[![Downloads](https://img.shields.io/pypi/dm/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
 [![Python version](https://img.shields.io/pypi/pyversions/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
 [![Development Status](https://img.shields.io/pypi/status/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
 
