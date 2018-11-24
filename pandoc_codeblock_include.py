@@ -35,6 +35,8 @@ def include(elem, doc):
             else:
                 text = file_content[start_from:end_at]
             elem.text = ''.join(text)
+            # Clear the attributes else will latex get an problem with the listings
+            elem.attributes.clear()
 
 def main(doc = None):
     return run_filter(include, doc = doc)
