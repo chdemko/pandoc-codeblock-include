@@ -1,13 +1,12 @@
 # pandoc-codeblock-include
-[![Build Status](https://img.shields.io/travis/chdemko/pandoc-codeblock-include/0.0.3.svg)](https://travis-ci.org/chdemko/pandoc-codeblock-include/branches)
-[![Coveralls](https://img.shields.io/coveralls/github/chdemko/pandoc-codeblock-include/0.0.3.svg)](https://coveralls.io/github/chdemko/pandoc-codeblock-include?branch=0.0.3)
+[![Build Status](https://img.shields.io/travis/chdemko/pandoc-codeblock-include/master.svg)](https://travis-ci.org/chdemko/pandoc-codeblock-include/branches)
+[![Coveralls](https://img.shields.io/coveralls/github/chdemko/pandoc-codeblock-include/master.svg)](https://coveralls.io/github/chdemko/pandoc-codeblock-include?branch=master)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/chdemko/pandoc-codeblock-include.svg)](https://scrutinizer-ci.com/g/chdemko/pandoc-codeblock-include/)
 [![PyPI version](https://img.shields.io/pypi/v/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
-[![PyPI format](https://img.shields.io/pypi/format/pandoc-codeblock-include/0.0.3.svg)](https://pypi.org/project/pandoc-codeblock-include/0.0.3/)
-[![License](https://img.shields.io/pypi/l/pandoc-codeblock-include/0.0.3.svg)](https://raw.githubusercontent.com/chdemko/pandoc-codeblock-include/0.0.3/LICENSE)
+[![PyPI format](https://img.shields.io/pypi/format/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
+[![License](https://img.shields.io/pypi/l/pandoc-codeblock-include.svg)](https://raw.githubusercontent.com/chdemko/pandoc-codeblock-include/master/LICENSE)
 [![Python version](https://img.shields.io/pypi/pyversions/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
 [![Development Status](https://img.shields.io/pypi/status/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
-
 
 *pandoc-codeblock-include* is a [pandoc] filter for including files in `CodeBlock` elements.
 
