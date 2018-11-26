@@ -36,6 +36,11 @@ def include(elem, doc):
                 text = file_content[start_from:end_at]
             elem.text = ''.join(text)
 
+            if doc.format in ['latex', 'beamer']:
+                # Clear the attributes else latex will get a problem with the listings
+                del elem.attributes['include']
+                del elem.attributes['endAt']
+
 def main(doc = None):
     return run_filter(include, doc = doc)
 
