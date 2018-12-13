@@ -38,8 +38,10 @@ def include(elem, doc):
 
             if doc.format in ['latex', 'beamer']:
                 # Clear the attributes else latex will get a problem with the listings
-                del elem.attributes['include']
-                del elem.attributes['endAt']
+                if 'include' in elem.attributes:
+                    del elem.attributes['include']
+                if 'endAt' in elem.attributes:
+                    del elem.attributes['endAt']
 
 def main(doc = None):
     return run_filter(include, doc = doc)
