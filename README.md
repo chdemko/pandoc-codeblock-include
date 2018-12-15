@@ -4,7 +4,7 @@
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/chdemko/pandoc-codeblock-include.svg?logo=scrutinizer)](https://scrutinizer-ci.com/g/chdemko/pandoc-codeblock-include/)
 [![PyPI version](https://img.shields.io/pypi/v/pandoc-codeblock-include.svg?logo=Python&logoColor=white)](https://pypi.org/project/pandoc-codeblock-include/)
 [![PyPI format](https://img.shields.io/pypi/format/pandoc-codeblock-include.svg)](https://pypi.org/project/pandoc-codeblock-include/)
-[![License](https://img.shields.io/pypi/l/pandoc-codeblock-include.svg?logo=data:image/png;base64iVBORw0KGgoAAAANSUhEUgAAAGQAAABQCAYAAADvCdDvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+[![License](https://img.shields.io/pypi/l/pandoc-codeblock-include.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABQCAYAAADvCdDvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAARYSURB
 VHic7Z09iB1VGIafb9hEjIqaVVT8KSJRAiaFGi201ErMRm0kwUYFQSE2hiTG0p/4U9gYxMJCxELQ
 uCGFhUIEFWFNoRgFA1oYU8Q/TDYWieS1mHsv6+7snb8z956953uqy8yZ77wzL+fMnG/O3GMUIGkV
