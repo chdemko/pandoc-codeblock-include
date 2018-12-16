@@ -25,8 +25,20 @@ def parse_attributes(items):
             try:
                 file_content = open(value, 'r').readlines()
                 parsed['content'] = file_content
+                parsed['include'] = value
             except IOError:
-                debug('[WARNING] pandoc-codeblock-include: ' + value + ' not found')
+                debug(
+                    '[WARNING] pandoc-codeblock-include: '
+                    + value
+                    + ' not found'
+                )
+            except UnicodeDecodeError:
+                debug(
+                    '[WARNING] pandoc-codeblock-include: file '
+                    + value
+                    + ' is not encoded in utf-8'
+                )
+
         elif name == 'startFrom':
             try:
                 parsed['start_from'] = int(value) - 1
@@ -71,7 +83,16 @@ def include(elem, doc):
             text = parsed['content'][start_from:end_at]
 
             # inject file content in element text
-            elem.text = ''.join(text)
+            try:
+                elem.text = ''.join(line.decode('utf8') for line in text)
+            except AttributeError:
+                elem.text = ''.join(text)
+            except UnicodeDecodeError:
+                debug(
+                    '[WARNING] pandoc-codeblock-include: file '
+                    + parsed['include']
+                    + ' is not encoded in utf-8'
+                )
 
         if doc.format in ['latex', 'beamer']:
             # Clear the attributes else latex will get a problem with the listings

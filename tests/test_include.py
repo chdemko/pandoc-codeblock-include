@@ -79,3 +79,15 @@ def test_error():
         '''
     )
 
+def test_non_utf8():
+    verify_conversion(
+        '''
+``` {include="tests/non-utf-8" startFrom="a" endAt="a"}
+```
+        ''',
+        '''
+``` {include="tests/non-utf-8" startFrom="a" endAt="a"}
+```
+        '''
+    )
+
