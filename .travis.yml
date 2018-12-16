@@ -8,8 +8,8 @@ before_install:
   - sudo apt-get install python-pip
   - pip install --user --upgrade pip
 install:
-  - pip install coveralls
-  - pip install tox-travis
+  - pip install --user coveralls
+  - pip install --user tox-travis
 script:
   - tox
   - coverage report -m
