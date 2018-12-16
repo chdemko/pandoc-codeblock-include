@@ -6,6 +6,7 @@ before_install:
   - sudo apt-get install python2.7
   - sudo apt-get install python
   - sudo apt-get install python-pip
+  - pip install --user --upgrade pip
 install:
   - pip install coveralls
   - pip install tox-travis
