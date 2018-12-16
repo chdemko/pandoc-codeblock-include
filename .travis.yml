@@ -14,7 +14,7 @@ install:
 script:
   - tox
   - python2 `which coverage` run -a --source=pandoc_codeblock_include setup.py test
-  - python2 `which coverage` run -a --source=pandoc_codeblock_include setup.py test
+  - python3 `which coverage` run -a --source=pandoc_codeblock_include setup.py test
   - coverage report -m
 after_success:
   - coveralls
