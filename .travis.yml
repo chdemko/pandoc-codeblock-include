@@ -9,7 +9,7 @@ before_install:
   - pip install --user --upgrade pip
 install:
   - pip install --user coveralls
-  - pip install --user tox
+  - pip install --user -e .[test]
 script:
   - tox
   - coverage report -m
