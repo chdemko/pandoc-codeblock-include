@@ -13,8 +13,10 @@ install:
   - pip install tox-travis
 script:
   - tox
-  - python2 -m pip install coverage
-  - python3 -m pip install coverage
+  - pip install pip2
+  - pip install pip3
+  - pip2 install coverage
+  - pip3 install coverage
   - python2 -m coverage run -a --source=pandoc_codeblock_include setup.py test
   - python3 -m coverage run -a --source=pandoc_codeblock_include setup.py test
   - coverage report -m
