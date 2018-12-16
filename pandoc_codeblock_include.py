@@ -4,48 +4,93 @@
 Pandoc filter for including file in code block
 """
 
-from panflute import *
+from panflute import run_filter, debug, CodeBlock
+
+def parse_attributes(items):
+    """
+    Extract usefull information from attributes.
+
+    Arguments
+    ---------
+        items:
+            element attributes
+
+    Returns
+    -------
+        a mapping containing possible 'content', 'start_from' and 'end_at'
+    """
+    parsed = {}
+    for name, value in items:
+        if name == 'include':
+            try:
+                file_content = open(value, 'r').readlines()
+                parsed['content'] = file_content
+            except IOError:
+                debug('[WARNING] pandoc-codeblock-include: ' + value + ' not found')
+        elif name == 'startFrom':
+            try:
+                parsed['start_from'] = int(value) - 1
+            except ValueError:
+                debug(
+                    '[WARNING] pandoc-codeblock-include: '
+                    + value
+                    + ' is not a correct integer'
+                )
+        elif name == 'endAt':
+            try:
+                parsed['end_at'] = int(value)
+            except ValueError:
+                debug(
+                    '[WARNING] pandoc-codeblock-include: '
+                    + value
+                    + ' is not a correct integer'
+                )
+
+    return parsed
+
 
 def include(elem, doc):
+    """
+    Transform CodeBlock element.
+
+    Arguments
+    ---------
+        elem:
+            current element
+        doc:
+            pandoc document
+    """
     # Is it a CodeBlock?
     if isinstance(elem, CodeBlock):
-        found = False
-        start_from = 0
-        end_at = -1
-        for name, value in elem.attributes.items():
-            if name == 'include':
-                try:
-                    file_content = open(value, 'r').readlines()
-                    found = True
-                except IOError:
-                    debug('[WARNING] pandoc-codeblock-include: ' + value + ' not found')
-            elif name == 'startFrom':
-                try:
-                    start_from = int(value) - 1
-                except ValueError:
-                    debug('[WARNING] pandoc-codeblock-include: ' + value + ' is not a correct integer')
-            elif name == 'endAt':
-                try:
-                    end_at = int(value)
-                except ValueError:
-                    debug('[WARNING] pandoc-codeblock-include: ' + value + ' is not a correct integer')
-        if found:
-            if end_at == -1:
-                text = file_content[start_from:]
-            else:
-                text = file_content[start_from:end_at]
+
+        parsed = parse_attributes(elem.attributes.items())
+
+        if 'content' in parsed:
+            start_from = parsed.get('start_from', 0)
+            end_at = parsed.get('end_at', len(parsed['content']))
+            text = parsed['content'][start_from:end_at]
+
+            # inject file content in element text
             elem.text = ''.join(text)
 
-            if doc.format in ['latex', 'beamer']:
-                # Clear the attributes else latex will get a problem with the listings
-                if 'include' in elem.attributes:
-                    del elem.attributes['include']
-                if 'endAt' in elem.attributes:
-                    del elem.attributes['endAt']
+        if doc.format in ['latex', 'beamer']:
+            # Clear the attributes else latex will get a problem with the listings
+            if 'include' in elem.attributes:
+                del elem.attributes['include']
+            if 'endAt' in elem.attributes:
+                del elem.attributes['endAt']
 
-def main(doc = None):
-    return run_filter(include, doc = doc)
+
+def main(doc=None):
+    """
+    main function.
+
+    Arguments
+    ---------
+        doc:
+            pandoc document
+    """
+    return run_filter(include, doc=doc)
 
 if __name__ == '__main__':
     main()
-

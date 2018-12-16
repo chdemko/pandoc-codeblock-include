@@ -52,3 +52,30 @@ Duis pretium rutrum dignissim.
         '''
     )
 
+def test_include_latex():
+    verify_conversion(
+        '''
+``` {include="tests/lorem" startFrom="1" endAt="2"}
+```
+        ''',
+        '''
+``` {startFrom="1"}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Duis pretium rutrum dignissim.
+```
+        ''',
+        format='latex'
+    )
+
+def test_error():
+    verify_conversion(
+        '''
+``` {include="tests/unexisting" startFrom="a" endAt="a"}
+```
+        ''',
+        '''
+``` {include="tests/unexisting" startFrom="a" endAt="a"}
+```
+        '''
+    )
+
