@@ -6,11 +6,11 @@ https://github.com/chdemko/pandoc-codeblock-include
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # To use a consistent encoding
 from codecs import open
-from os import path, makedirs
+from os import path
 
 here = path.abspath(path.dirname(__file__))
 
@@ -38,7 +38,7 @@ setup(
     url='https://github.com/chdemko/pandoc-codeblock-include',
 
     # The project's download page
-    download_url = 'https://github.com/chdemko/pandoc-codeblock-include/archive/master.zip',
+    download_url='https://github.com/chdemko/pandoc-codeblock-include/archive/master.zip',
 
     # Author details
     author='Christophe Demko',
@@ -112,6 +112,6 @@ setup(
     # packages=find_packages(),
     # include_package_data = True,
 
-    setup_requires=['pytest-runner'],
+    setup_requires=['pypandoc', 'pytest-runner'],
     tests_require=['pytest'],
 )
