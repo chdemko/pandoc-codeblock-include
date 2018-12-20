@@ -13,12 +13,13 @@ import codecs
 from setuptools import setup
 
 # Get the long description from the README file
+README = path.join(path.abspath(path.dirname(__file__)), 'README.md')
 try:
     import pypandoc
 
-    LONG_DESCRIPTION = pypandoc.convert('README.md', 'rst')
+    LONG_DESCRIPTION = pypandoc.convert(README, 'rst')
 except (IOError, ImportError):
-    with codecs.open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
+    with codecs.open(README, encoding='utf-8') as f:
         LONG_DESCRIPTION = f.read()
 
 setup(
