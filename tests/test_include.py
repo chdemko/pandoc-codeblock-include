@@ -1,93 +1,44 @@
 # This Python file uses the following encoding: utf-8
 
+from os import path
 from unittest import TestCase
-from panflute import *
 
-from helper import verify_conversion
+from panflute import convert_text
 
-def test_include():
-    verify_conversion(
-        '''
-``` {include="tests/lorem"}
-```
-        ''',
-        '''
-``` {include="tests/lorem"}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Duis pretium rutrum dignissim.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-Interdum et malesuada fames ac ante ipsum primis in faucibus.
-Ut iaculis arcu sed dui ornare pretium.
-```
-        '''
-    )
+from pandoc_codeblock_include import main
 
-def test_include_start_from():
-    verify_conversion(
-        '''
-``` {include="tests/lorem" startFrom="2"}
-```
-        ''',
-        '''
-``` {include="tests/lorem" startFrom="2"}
-Duis pretium rutrum dignissim.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-Interdum et malesuada fames ac ante ipsum primis in faucibus.
-Ut iaculis arcu sed dui ornare pretium.
-```
-        '''
-    )
 
-def test_include_end_at():
-    verify_conversion(
-        '''
-``` {include="tests/lorem" endAt="2"}
-```
-        ''',
-        '''
-``` {include="tests/lorem" endAt="2"}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Duis pretium rutrum dignissim.
-```
-        '''
-    )
+class IncludeTest(TestCase):
+    @staticmethod
+    def scenario():
+        return [
+            ('content1.md', 'markdown', 'expected1.md'),
+            ('content2.md', 'markdown', 'expected2.md'),
+            ('content3.md', 'markdown', 'expected3.md'),
+            ('content4.md', 'latex', 'expected4.md'),
+            ('content5.md', 'markdown', 'expected5.md'),
+            ('content6.md', 'markdown', 'expected6.md')
+        ]
 
-def test_include_latex():
-    verify_conversion(
-        '''
-``` {include="tests/lorem" startFrom="1" endAt="2"}
-```
-        ''',
-        '''
-``` {startFrom="1"}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Duis pretium rutrum dignissim.
-```
-        ''',
-        format='latex'
-    )
+    def test_include(self):
+        for (content, output, expected) in IncludeTest.scenario():
+            with open(path.join(path.abspath(path.dirname(__file__)), content),
+                      'r') as content_file:
+                content_text = content_file.read()
+            with open(path.join(path.abspath(path.dirname(__file__)), expected),
+                      'r') as content_file:
+                expected_text = content_file.read()
 
-def test_error():
-    verify_conversion(
-        '''
-``` {include="tests/unexisting" startFrom="a" endAt="a"}
-```
-        ''',
-        '''
-``` {include="tests/unexisting" startFrom="a" endAt="a"}
-```
-        '''
-    )
+            doc = convert_text(content_text, standalone=True)
+            doc.format = output
 
-def test_non_utf8():
-    verify_conversion(
-        '''
-``` {include="tests/non-utf-8" startFrom="a" endAt="a"}
-```
-        ''',
-        '''
-``` {include="tests/non-utf-8" startFrom="a" endAt="a"}
-```
-        '''
-    )
-
+            self.assertEqual(
+                convert_text(
+                    main(doc),
+                    standalone=True,
+                    input_format='panflute',
+                    output_format='markdown'
+                ),
+                expected_text,
+                "Error in converting " + content + " to " + expected + " with format " + format
+            )

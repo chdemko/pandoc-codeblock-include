@@ -88,8 +88,9 @@ def parse_attributes(items):
     """
     parsed = {}
     for name, value in items:
-        for parse in [parse_include, parse_start_from, parse_end_at]:
-            parse(parsed, name, value)
+        parse_include(parsed, name, value)
+        parse_start_from(parsed, name, value)
+        parse_end_at(parsed, name, value)
     return parsed
 
 

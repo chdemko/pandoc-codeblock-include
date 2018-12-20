@@ -5,22 +5,20 @@ https://packaging.python.org/en/latest/distributing.html
 https://github.com/chdemko/pandoc-codeblock-include
 """
 
-# Always prefer setuptools over distutils
-from setuptools import setup
-
 # To use a consistent encoding
-from codecs import open
 from os import path
 
-here = path.abspath(path.dirname(__file__))
+# Always prefer setuptools over distutils
+from setuptools import setup
 
 # Get the long description from the README file
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
+
+    LONG_DESCRIPTION = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
-    with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-        long_description = f.read()
+    with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
+        LONG_DESCRIPTION = f.read()
 
 setup(
     name='pandoc-codeblock-include',
@@ -32,7 +30,7 @@ setup(
 
     # The project's description
     description='A pandoc filter for including file in block code',
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
 
     # The project's main homepage.
     url='https://github.com/chdemko/pandoc-codeblock-include',
@@ -61,7 +59,7 @@ setup(
 
         # Specify the OS
         'Operating System :: OS Independent',
-        
+
         # Indicate who your project is intended for
         'Environment :: Console',
         'Intended Audience :: End Users/Desktop',
@@ -89,8 +87,7 @@ setup(
             'pandoc-codeblock-include = pandoc_codeblock_include:main',
         ],
     },
-    
-    
+
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
