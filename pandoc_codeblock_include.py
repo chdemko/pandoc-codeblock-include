@@ -121,7 +121,7 @@ def inject_content(elem, parsed):
         )
 
 
-def clear_latex_attributes(elem, doc):
+def clear_latex_attributes(elem):
     """
     Clear LaTeX attributes.
 
@@ -129,14 +129,11 @@ def clear_latex_attributes(elem, doc):
     ---------
         elem:
             current element
-        doc:
-            pandoc document
     """
-    if doc.format in ['latex', 'beamer']:
-        # Clear the attributes else latex will get a problem with the listings
-        for attribute in ['include', 'endAt']:
-            if attribute in elem.attributes:
-                del elem.attributes[attribute]
+    # Clear the attributes else latex will get a problem with the listings
+    for attribute in ['include', 'endAt']:
+        if attribute in elem.attributes:
+            del elem.attributes[attribute]
 
 
 def include(elem, doc):
@@ -155,7 +152,8 @@ def include(elem, doc):
         parsed = parse_attributes(elem.attributes.items())
         if 'content' in parsed:
             inject_content(elem, parsed)
-        clear_latex_attributes(elem, doc)
+        if doc.format in ['latex', 'beamer']:
+            clear_latex_attributes(elem)
 
 
 def main(doc=None):
