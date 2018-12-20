@@ -40,5 +40,5 @@ class IncludeTest(TestCase):
                     output_format='markdown'
                 ),
                 expected_text,
-                "Error in converting " + content + " to " + expected + " with format " + format
+                "Error in converting " + content + " to " + expected + " with format " + output
             )

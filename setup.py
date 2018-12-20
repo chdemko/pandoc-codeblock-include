@@ -7,6 +7,7 @@ https://github.com/chdemko/pandoc-codeblock-include
 
 # To use a consistent encoding
 from os import path
+import codecs
 
 # Always prefer setuptools over distutils
 from setuptools import setup
@@ -17,7 +18,7 @@ try:
 
     LONG_DESCRIPTION = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
-    with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
+    with codecs.open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
         LONG_DESCRIPTION = f.read()
 
 setup(
