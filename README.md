@@ -1,7 +1,6 @@
 # pandoc-codeblock-include
 [![Build Status](https://img.shields.io/travis/chdemko/pandoc-codeblock-include/master.svg?logo=travis)](https://travis-ci.org/chdemko/pandoc-codeblock-include/branches)
 [![Coveralls](https://img.shields.io/coveralls/github/chdemko/pandoc-codeblock-include/master.svg?logo=Codecov&logoColor=white)](https://coveralls.io/github/chdemko/pandoc-codeblock-include?branch=master)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/chdemko/pandoc-codeblock-include.svg?logo=scrutinizer)](https://scrutinizer-ci.com/g/chdemko/pandoc-codeblock-include/)
 [![Code Climate](https://codeclimate.com/github/chdemko/pandoc-codeblock-include/badges/gpa.svg)](https://codeclimate.com/github/chdemko/pandoc-codeblock-include/)
 [![Code Beat](https://codebeat.co/badges/acdf2439-b9df-42df-8387-bd5f70e14314)](https://codebeat.co/projects/github-com-chdemko-pandoc-codeblock-include-master/)
 [![Codacy](https://img.shields.io/codacy/grade/26716ef242ba4089aff55eff7ca592a9.svg?logo=codacy&logoColor=white)](https://www.codacy.com/app/chdemko/pandoc-codeblock-include)
