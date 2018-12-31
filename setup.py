@@ -82,7 +82,7 @@ setup(
     # dependencies). You can install these using the following syntax,
     # for example:
     # $ pip install -e .[dev,test]
-    extras_require={"dev": ["check-manifest"], "test": ["tox", "black"]},
+    extras_require={"dev": ["check-manifest"], "test": ["tox"]},
     # packages=find_packages(),
     # include_package_data = True,
     setup_requires=["pypandoc", "pytest-runner"],
