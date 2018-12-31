@@ -11,6 +11,7 @@ install:
   - pip install --user coveralls
   - pip install --user -e .[test]
 script:
+  - black --check pandoc_codeblock_include.py setup.py tests/test_include.py
   - tox
   - coverage report -m
 after_success:

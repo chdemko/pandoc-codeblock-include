@@ -16,6 +16,7 @@ class IncludeTest(TestCase):
     """
     Test pandoc-codeblock-include filter.
     """
+
     @staticmethod
     def scenario():
         """
@@ -26,12 +27,12 @@ class IncludeTest(TestCase):
             A list of all tests.
         """
         return [
-            ('content1.md', 'markdown', 'expected1.md'),
-            ('content2.md', 'markdown', 'expected2.md'),
-            ('content3.md', 'markdown', 'expected3.md'),
-            ('content4.md', 'latex', 'expected4.md'),
-            ('content5.md', 'markdown', 'expected5.md'),
-            ('content6.md', 'markdown', 'expected6.md')
+            ("content1.md", "markdown", "expected1.md"),
+            ("content2.md", "markdown", "expected2.md"),
+            ("content3.md", "markdown", "expected3.md"),
+            ("content4.md", "latex", "expected4.md"),
+            ("content5.md", "markdown", "expected5.md"),
+            ("content6.md", "markdown", "expected6.md"),
         ]
 
     def test_include(self):
@@ -39,11 +40,10 @@ class IncludeTest(TestCase):
         Test include function (via main).
         """
         for (content, output, expected) in IncludeTest.scenario():
-            with open(path.join(path.abspath(path.dirname(__file__)), content),
-                      'r') as content_file:
+            folder = path.abspath(path.dirname(__file__))
+            with open(path.join(folder, content), "r") as content_file:
                 content_text = content_file.read()
-            with open(path.join(path.abspath(path.dirname(__file__)), expected),
-                      'r') as content_file:
+            with open(path.join(folder, expected), "r") as content_file:
                 expected_text = content_file.read()
 
             doc = convert_text(content_text, standalone=True)
@@ -53,9 +53,14 @@ class IncludeTest(TestCase):
                 convert_text(
                     main(doc),
                     standalone=True,
-                    input_format='panflute',
-                    output_format='markdown'
+                    input_format="panflute",
+                    output_format="markdown",
                 ),
                 expected_text,
-                "Error in converting " + content + " to " + expected + " with format " + output
+                "Error in converting "
+                + content
+                + " to "
+                + expected
+                + " with format "
+                + output,
             )

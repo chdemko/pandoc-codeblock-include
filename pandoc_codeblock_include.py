@@ -20,15 +20,19 @@ def parse_include(parsed, name, value):
         value:
             attribute value
     """
-    if name == 'include':
+    if name == "include":
         try:
-            file_content = open(value, 'r').readlines()
-            parsed['content'] = file_content
-            parsed['include'] = value
+            file_content = open(value, "r").readlines()
+            parsed["content"] = file_content
+            parsed["include"] = value
         except IOError:
-            debug('[WARNING] pandoc-codeblock-include: ' + value + ' not found')
+            debug("[WARNING] pandoc-codeblock-include: " + value + " not found")
         except UnicodeDecodeError:
-            debug('[WARNING] pandoc-codeblock-include: file ' + value + ' is not encoded in utf-8')
+            debug(
+                "[WARNING] pandoc-codeblock-include: file "
+                + value
+                + " is not encoded in utf-8"
+            )
 
 
 def parse_start_from(parsed, name, value):
@@ -44,12 +48,15 @@ def parse_start_from(parsed, name, value):
         value:
             attribute value
     """
-    if name == 'startFrom':
+    if name == "startFrom":
         try:
-            parsed['start_from'] = int(value) - 1
+            parsed["start_from"] = int(value) - 1
         except ValueError:
             debug(
-                '[WARNING] pandoc-codeblock-include: ' + value + ' is not a correct integer')
+                "[WARNING] pandoc-codeblock-include: "
+                + value
+                + " is not a correct integer"
+            )
 
 
 def parse_end_at(parsed, name, value):
@@ -65,12 +72,15 @@ def parse_end_at(parsed, name, value):
         value:
             attribute value
     """
-    if name == 'endAt':
+    if name == "endAt":
         try:
-            parsed['end_at'] = int(value)
+            parsed["end_at"] = int(value)
         except ValueError:
             debug(
-                '[WARNING] pandoc-codeblock-include: ' + value + ' is not a correct integer')
+                "[WARNING] pandoc-codeblock-include: "
+                + value
+                + " is not a correct integer"
+            )
 
 
 def parse_attributes(items):
@@ -105,20 +115,20 @@ def inject_content(elem, parsed):
         parsed:
             dictionnary of attributes
     """
-    start_from = parsed.get('start_from', 0)
-    end_at = parsed.get('end_at', len(parsed['content']))
-    text = parsed['content'][start_from:end_at]
+    start_from = parsed.get("start_from", 0)
+    end_at = parsed.get("end_at", len(parsed["content"]))
+    text = parsed["content"][start_from:end_at]
 
     # inject file content in element text
     try:
-        elem.text = ''.join(line.decode('utf8') for line in text)
+        elem.text = "".join(line.decode("utf8") for line in text)
     except AttributeError:
-        elem.text = ''.join(text)
+        elem.text = "".join(text)
     except UnicodeDecodeError:
         debug(
-            '[WARNING] pandoc-codeblock-include: file '
-            + parsed['include']
-            + ' is not encoded in utf-8'
+            "[WARNING] pandoc-codeblock-include: file "
+            + parsed["include"]
+            + " is not encoded in utf-8"
         )
 
 
@@ -132,7 +142,7 @@ def clear_latex_attributes(elem):
             current element
     """
     # Clear the attributes else latex will get a problem with the listings
-    for attribute in ['include', 'endAt']:
+    for attribute in ["include", "endAt"]:
         if attribute in elem.attributes:
             del elem.attributes[attribute]
 
@@ -151,9 +161,9 @@ def include(elem, doc):
     # Is it a CodeBlock?
     if isinstance(elem, CodeBlock):
         parsed = parse_attributes(elem.attributes.items())
-        if 'content' in parsed:
+        if "content" in parsed:
             inject_content(elem, parsed)
-        if doc.format in ['latex', 'beamer']:
+        if doc.format in ["latex", "beamer"]:
             clear_latex_attributes(elem)
 
 
@@ -169,5 +179,5 @@ def main(doc=None):
     return run_filter(include, doc=doc)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
