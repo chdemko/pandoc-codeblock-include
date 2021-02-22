@@ -78,7 +78,15 @@ setup(
     # $ pip install -e .[dev,test]
     extras_require={
         "dev": ["check-manifest"],
-        "test": ["pytest-cov", "pylint", "black"],
+        "test": [
+            "tox",
+            "pytest-runner",
+            "pytest-cov",
+            "black",
+            "doc8",
+            "pylint>=2.6",
+            "panflute>=2.0",
+        ],
     },
     # packages=find_packages(),
     # include_package_data = True,
