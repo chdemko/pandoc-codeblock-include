@@ -6,35 +6,27 @@ https://github.com/chdemko/pandoc-codeblock-include
 """
 
 # To use a consistent encoding
-from os import path
-import codecs
 
 # Always prefer setuptools over distutils
 from setuptools import setup
 
 # Get the long description from the README file
-README = path.join(path.abspath(path.dirname(__file__)), "README.md")
-try:
-    import pypandoc
-
-    LONG_DESCRIPTION = pypandoc.convert(README, "rst")
-except (IOError, ImportError):
-    with codecs.open(README, encoding="utf-8") as f:
-        LONG_DESCRIPTION = f.read()
+with open("README.md", encoding="utf-8") as stream:
+    LONG_DESCRIPTION = stream.read()
 
 setup(
     name="pandoc-codeblock-include",
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version="0.1.0",
     # The project's description
     description="A pandoc filter for including file in block code",
     long_description=LONG_DESCRIPTION,
+    long_description_content_type="text/markdown",
     # The project's main homepage.
     url="https://github.com/chdemko/pandoc-codeblock-include",
     # The project's download page
-    download_url="https://github.com/chdemko/pandoc-codeblock-include/archive/master.zip",
+    download_url="https://github.com/chdemko/pandoc-codeblock-include/archive/develop.zip",
     # Author details
     author="Christophe Demko",
     author_email="chdemko@gmail.com",
@@ -59,8 +51,10 @@ setup(
         "Topic :: Software Development :: Build Tools",
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2.7, Python 3 or both.
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
     # What does your project relate to?
     keywords="pandoc filters codeblock include",
@@ -77,14 +71,23 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=["panflute>=1.10", "pypandoc>=1.4"],
+    install_requires=["panflute>=2.0"],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
     # $ pip install -e .[dev,test]
-    extras_require={"dev": ["check-manifest"], "test": ["tox"]},
+    extras_require={
+        "dev": ["check-manifest"],
+        "test": [
+            "tox",
+            "pytest-runner",
+            "pytest-cov",
+            "black",
+            "doc8",
+            "pylint>=2.6",
+            "panflute>=2.0",
+        ],
+    },
     # packages=find_packages(),
     # include_package_data = True,
-    setup_requires=["pypandoc", "pytest-runner"],
-    tests_require=["pytest"],
 )
