@@ -25,7 +25,7 @@ license icon by [Daniel Bruce](https://www.iconfinder.com/icons/216659/license_i
 Instructions
 ------------
 
-*pandoc-codeblock-include* requires [python], a programming language that comes pre-installed on linux and Mac OS X, and which is easily installed [on Windows]. Either python 2.7 or 3.x will do.
+*pandoc-codeblock-include* requires [python], a programming language that comes pre-installed on linux and Mac OS X, and which is easily installed [on Windows].
 
 Install *pandoc-codeblock-include* as root using the bash command
 
@@ -42,7 +42,7 @@ To upgrade to the current code, use
 `pip` is a script that downloads and installs modules from the Python Package Index, [PyPI].  It should come installed with your python distribution. If you are running linux, `pip` may be bundled separately. On a Debian-based system (including Ubuntu), you can install it as root using
 
     apt-get update
-    apt-get install python-pip
+    apt-get install python3-pip
 
 [python]: https://www.python.org
 [on Windows]: https://www.python.org/downloads/windows
