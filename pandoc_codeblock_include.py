@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 """
-Pandoc filter for including file in code block
+Pandoc filter for including file in code block.
 """
 
-from panflute import run_filter, debug, CodeBlock
+from panflute import CodeBlock, debug, run_filters  # type: ignore
 
 
 def parse_include(parsed, name, value):
@@ -13,16 +13,17 @@ def parse_include(parsed, name, value):
 
     Arguments
     ---------
-        parsed:
-            A dictionnary of attributes
-        name:
-            attribute name
-        value:
-            attribute value
+    parsed
+        A dictionnary of attributes
+    name
+        attribute name
+    value
+        attribute value
     """
     if name == "include":
         try:
-            file_content = open(value, "r").readlines()
+            with open(value, "r", encoding="utf-8") as stream:
+                file_content = stream.readlines()
             parsed["content"] = file_content
             parsed["include"] = value
         except IOError:
@@ -41,12 +42,12 @@ def parse_start_from(parsed, name, value):
 
     Arguments
     ---------
-        parsed:
-            A dictionnary of attributes
-        name:
-            attribute name
-        value:
-            attribute value
+    parsed
+        A dictionnary of attributes
+    name
+        attribute name
+    value
+        attribute value
     """
     if name == "startFrom":
         try:
@@ -65,12 +66,12 @@ def parse_end_at(parsed, name, value):
 
     Arguments
     ---------
-        parsed:
-            A dictionnary of attributes
-        name:
-            attribute name
-        value:
-            attribute value
+    parsed
+        A dictionnary of attributes
+    name
+        attribute name
+    value
+        attribute value
     """
     if name == "endAt":
         try:
@@ -89,8 +90,8 @@ def parse_attributes(items):
 
     Arguments
     ---------
-        items:
-            element attributes
+    items
+        element attributes
 
     Returns
     -------
@@ -110,10 +111,10 @@ def inject_content(elem, parsed):
 
     Arguments
     ---------
-        elem:
-            Pandoc element
-        parsed:
-            dictionnary of attributes
+    elem
+        Pandoc element
+    parsed
+        dictionnary of attributes
     """
     start_from = parsed.get("start_from", 0)
     end_at = parsed.get("end_at", len(parsed["content"]))
@@ -138,11 +139,11 @@ def clear_latex_attributes(elem):
 
     Arguments
     ---------
-        elem:
-            current element
+    elem
+        current element
     """
     # Clear the attributes else latex will get a problem with the listings
-    for attribute in ["include", "endAt"]:
+    for attribute in ("include", "endAt"):
         if attribute in elem.attributes:
             del elem.attributes[attribute]
 
@@ -153,30 +154,34 @@ def include(elem, doc):
 
     Arguments
     ---------
-        elem:
-            current element
-        doc:
-            pandoc document
+    elem
+        current element
+    doc
+        pandoc document
     """
     # Is it a CodeBlock?
     if isinstance(elem, CodeBlock):
         parsed = parse_attributes(elem.attributes.items())
         if "content" in parsed:
             inject_content(elem, parsed)
-        if doc.format in ["latex", "beamer"]:
+        if doc.format in ("latex", "beamer"):
             clear_latex_attributes(elem)
 
 
 def main(doc=None):
     """
-    main function.
+    Convert the pandoc document.
 
     Arguments
     ---------
-        doc:
-            pandoc document
+    doc
+        pandoc document
+
+    Returns
+    -------
+        The modified pandoc document.
     """
-    return run_filter(include, doc=doc)
+    return run_filters([include], doc=doc)
 
 
 if __name__ == "__main__":

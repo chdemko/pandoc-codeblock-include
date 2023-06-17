@@ -39,7 +39,7 @@ class IncludeTest(TestCase):
         """
         Test include function (via main).
         """
-        for (content, output, expected) in IncludeTest.scenario():
+        for content, output, expected in IncludeTest.scenario():
             folder = path.abspath(path.dirname(__file__))
             with open(path.join(folder, content), "r") as content_file:
                 content_text = content_file.read()
