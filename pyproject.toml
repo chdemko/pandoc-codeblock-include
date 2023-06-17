@@ -4,7 +4,7 @@
 
 [tool.poetry]
     name = "pandoc-codeblock-include"
-    version = "1.0.0"
+    version = "1.0.1"
     description="A pandoc filter for including file in block code"
     authors = ["Christophe Demko <chdemko@gmail.com>"]
     license = "BSD-3-Clause"
