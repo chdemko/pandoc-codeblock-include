@@ -27,22 +27,29 @@ Instructions
 
 *pandoc-codeblock-include* requires [python], a programming language that comes pre-installed on linux and Mac OS X, and which is easily installed [on Windows].
 
-Install *pandoc-codeblock-include* as root using the bash command
+Install *pandoc-codeblock-include* using the bash command
 
-    pip install pandoc-codeblock-include
+~~~shell
+$ pip install pandoc-codeblock-include
+~~~
 
 To upgrade to the most recent release, use
 
-    pip install --upgrade pandoc-codeblock-include
+~~~shell
+$ pip install --upgrade pandoc-codeblock-include
+~~~
 
 To upgrade to the current code, use
 
-    pip install --upgrade --force git+https://github.com/chdemko/pandoc-codeblock-include
+~~~shell
+$ pip install --upgrade --force git+https://github.com/chdemko/pandoc-codeblock-include
+~~~
 
 `pip` is a script that downloads and installs modules from the Python Package Index, [PyPI].  It should come installed with your python distribution. If you are running linux, `pip` may be bundled separately. On a Debian-based system (including Ubuntu), you can install it as root using
 
-    apt-get update
-    apt-get install python3-pip
+~~~shell
+$ sudo apt-get install python3-pip
+~~~
 
 [python]: https://www.python.org
 [on Windows]: https://www.python.org/downloads/windows
