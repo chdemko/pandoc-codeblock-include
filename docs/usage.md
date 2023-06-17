@@ -1,6 +1,12 @@
 Usage
 =====
 
+To apply the filter, use the following option with pandoc:
+
+~~~shell
+$ pandoc --filter pandoc-codeblock-include
+~~~
+
 Explanation
 -----------
 
@@ -14,6 +20,6 @@ Example
 
 Demonstration: Using [pandoc-codeblock-include-sample.txt] as input gives output file in [pdf] (use [lorem] content).
 
-[pandoc-codeblock-include-sample.txt]: https://raw.githubusercontent.com/wiki/chdemko/pandoc-codeblock-include/images/pandoc-codeblock-include-sample.txt
-[lorem]: https://raw.githubusercontent.com/wiki/chdemko/pandoc-codeblock-include/images/lorem
-[pdf]: https://raw.githubusercontent.com/wiki/chdemko/pandoc-codeblock-include/images/pandoc-codeblock-include-sample.pdf
+[pandoc-codeblock-include-sample.txt]: https://raw.githubusercontent.com/chdemko/pandoc-codeblock-include/develop/docs/images/pandoc-codeblock-include-sample.txt
+[lorem]: https://raw.githubusercontent.com/chdemko/pandoc-codeblock-include/develop/docs/images/lorem
+[pdf]: https://raw.githubusercontent.com/chdemko/pandoc-codeblock-include/develop/docs/images/pandoc-codeblock-include-sample.pdf

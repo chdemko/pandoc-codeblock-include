@@ -1,4 +1,6 @@
-# pandoc-codeblock-include
+Installation
+============
+
 ![Python package](https://github.com/chdemko/pandoc-codeblock-include/workflows/Python%20package/badge.svg?branch=develop)
 [![Coveralls](https://img.shields.io/coveralls/github/chdemko/pandoc-codeblock-include/develop.svg?logo=Codecov&logoColor=white)](https://coveralls.io/github/chdemko/pandoc-codeblock-include?branch=develop)
 [![Code Climate](https://codeclimate.com/github/chdemko/pandoc-codeblock-include/badges/gpa.svg)](https://codeclimate.com/github/chdemko/pandoc-codeblock-include/)
@@ -20,19 +22,7 @@ license icon by [Daniel Bruce](https://www.iconfinder.com/icons/216659/license_i
 
 [pandoc]: http://pandoc.org/
 
-Documentation
--------------
-
-See the [wiki pages](https://github.com/chdemko/pandoc-codeblock-include/wiki).
-
-Usage
------
-
-To apply the filter, use the following option with pandoc:
-
-    --filter pandoc-codeblock-include
-
-Installation
+Instructions
 ------------
 
 *pandoc-codeblock-include* requires [python], a programming language that comes pre-installed on linux and Mac OS X, and which is easily installed [on Windows]. Either python 2.7 or 3.x will do.
