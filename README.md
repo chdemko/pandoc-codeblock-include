@@ -1,7 +1,7 @@
 Installation
 ============
 
-![Python package](https://github.com/chdemko/pandoc-codeblock-include/workflows/Python%20package/badge.svg?branch=develop)
+[![Python package](https://github.com/chdemko/pandoc-codeblock-include/workflows/Python%20package/badge.svg?branch=develop)](https://github.com/chdemko/pandoc-codeblock-include/actions/workflows/python-package.yml)
 [![Coveralls](https://img.shields.io/coveralls/github/chdemko/pandoc-codeblock-include/develop.svg?logo=Codecov&logoColor=white)](https://coveralls.io/github/chdemko/pandoc-codeblock-include?branch=develop)
 [![Code Climate](https://codeclimate.com/github/chdemko/pandoc-codeblock-include/badges/gpa.svg)](https://codeclimate.com/github/chdemko/pandoc-codeblock-include/)
 [![Code Beat](https://codebeat.co/badges/c0e680bd-9c47-4180-8d3f-b706905d0e73)](https://codebeat.co/projects/github-com-chdemko-pandoc-codeblock-include-develop/)
