@@ -36,13 +36,13 @@ Instructions
 Install *pandoc-codeblock-include* using the bash command
 
 ~~~shell
-$ pipX install pandoc-codeblock-include
+$ pipx install pandoc-codeblock-include
 ~~~
 
 To upgrade to the most recent release, use
 
 ~~~shell
-$ pipX upgrade pandoc-codeblock-include
+$ pipx upgrade pandoc-codeblock-include
 ~~~
 
 `pipx` is a script to install and run python applications in isolated environments from the Python Package Index, [PyPI]. It can be installed using instructions given [here](https://pipx.pypa.io/stable/).
