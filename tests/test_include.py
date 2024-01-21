@@ -5,6 +5,7 @@ Test pandoc-codeblock-include filter.
 """
 
 from os import path
+from pathlib import Path
 from unittest import TestCase
 
 from panflute import convert_text
@@ -41,10 +42,8 @@ class IncludeTest(TestCase):
         """
         for content, output, expected in IncludeTest.scenario():
             folder = path.abspath(path.dirname(__file__))
-            with open(path.join(folder, content), "r") as content_file:
-                content_text = content_file.read()
-            with open(path.join(folder, expected), "r") as content_file:
-                expected_text = content_file.read()
+            content_text = Path(path.join(folder, content)).read_text()
+            expected_text = Path(path.join(folder, expected)).read_text()
 
             doc = convert_text(content_text, standalone=True)
             doc.format = output

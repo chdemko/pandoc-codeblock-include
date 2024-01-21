@@ -4,7 +4,7 @@
 Pandoc filter for including file in code block.
 """
 
-from panflute import CodeBlock, debug, run_filters  # type: ignore
+from panflute import CodeBlock, debug, run_filters
 
 
 def parse_include(parsed, name, value):
