@@ -4,10 +4,13 @@
 Pandoc filter for including file in code block.
 """
 
-from panflute import CodeBlock, debug, run_filters
+from collections.abc import Iterable
+from typing import Any
+
+from panflute import CodeBlock, Doc, Element, debug, run_filters
 
 
-def parse_include(parsed, name, value):
+def parse_include(parsed: dict[str, Any], name: str, value: str) -> None:
     """
     Extract include information from attributes.
 
@@ -22,11 +25,11 @@ def parse_include(parsed, name, value):
     """
     if name == "include":
         try:
-            with open(value, "r", encoding="utf-8") as stream:
+            with open(value, encoding="utf-8") as stream:
                 file_content = stream.readlines()
             parsed["content"] = file_content
             parsed["include"] = value
-        except IOError:
+        except OSError:
             debug("[WARNING] pandoc-codeblock-include: " + value + " not found")
         except UnicodeDecodeError:
             debug(
@@ -36,7 +39,7 @@ def parse_include(parsed, name, value):
             )
 
 
-def parse_start_from(parsed, name, value):
+def parse_start_from(parsed: dict[str, Any], name: str, value: str) -> None:
     """
     Extract startFrom information from attributes.
 
@@ -60,9 +63,9 @@ def parse_start_from(parsed, name, value):
             )
 
 
-def parse_end_at(parsed, name, value):
+def parse_end_at(parsed: dict[str, Any], name: str, value: str) -> None:
     """
-    Extract entAt information from attributes.
+    Extract information from attributes.
 
     Arguments
     ---------
@@ -84,7 +87,7 @@ def parse_end_at(parsed, name, value):
             )
 
 
-def parse_attributes(items):
+def parse_attributes(items: Iterable[tuple[str, str]]) -> dict[str, str]:
     """
     Extract usefull information from attributes.
 
@@ -95,9 +98,10 @@ def parse_attributes(items):
 
     Returns
     -------
+    dict[str, str]
         a mapping containing possible 'content', 'start_from' and 'end_at'
     """
-    parsed = {}
+    parsed: dict[str, Any] = {}
     for name, value in items:
         parse_include(parsed, name, value)
         parse_start_from(parsed, name, value)
@@ -105,7 +109,7 @@ def parse_attributes(items):
     return parsed
 
 
-def inject_content(elem, parsed):
+def inject_content(elem: Element, parsed: dict[str, Any]) -> None:
     """
     Inject parsed attributes into element content.
 
@@ -133,7 +137,7 @@ def inject_content(elem, parsed):
         )
 
 
-def clear_latex_attributes(elem):
+def clear_latex_attributes(elem: Element) -> None:
     """
     Clear LaTeX attributes.
 
@@ -148,7 +152,7 @@ def clear_latex_attributes(elem):
             del elem.attributes[attribute]
 
 
-def include(elem, doc):
+def include(elem: Element, doc: Doc) -> None:
     """
     Transform CodeBlock element.
 
@@ -168,7 +172,7 @@ def include(elem, doc):
             clear_latex_attributes(elem)
 
 
-def main(doc=None):
+def main(doc: Doc | None = None) -> Doc:
     """
     Convert the pandoc document.
 
@@ -179,6 +183,7 @@ def main(doc=None):
 
     Returns
     -------
+    Doc
         The modified pandoc document.
     """
     return run_filters([include], doc=doc)
