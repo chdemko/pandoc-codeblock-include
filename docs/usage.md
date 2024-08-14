@@ -3,8 +3,8 @@ Usage
 
 To apply the filter, use the following option with pandoc:
 
-~~~shell
-$ pandoc --filter pandoc-codeblock-include
+~~~{prompt} bash
+pandoc --filter pandoc-codeblock-include
 ~~~
 
 Explanation
