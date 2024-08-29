@@ -38,14 +38,14 @@ comes pre-installed on linux and Mac OS X, and which is easily installed
 
 Install *pandoc-codeblock-include* using the bash command
 
-~~~{prompt} bash
-pipx install pandoc-codeblock-include
+~~~shell-session
+$ pipx install pandoc-codeblock-include
 ~~~
 
 To upgrade to the most recent release, use
 
-~~~{prompt} bash
-pipx upgrade pandoc-codeblock-include
+~~~shell-session
+$ pipx upgrade pandoc-codeblock-include
 ~~~
 
 `pipx` is a script to install and run python applications in isolated
